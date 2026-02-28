@@ -1,11 +1,14 @@
 ---
-import { getCollection } from "astro:content";
 import { siteConfig } from "../config/site-config";
+import BlogPost from "../components/BlogPost.astro";
 import MainLayout from "../layouts/MainLayout.astro";
+import type { ACTION_ERROR_CODES } from "astro:actions";
 
-const blogPosts = await getCollection('blog');
-console.log({ blogPosts })
+// Astro.glob()
+// const matches = import.meta.glob("./posts/*.md", { eager: true }); 
+// const posts = Object.values(matches) as any[]; 
 
+const posts = Object.values(import.meta.glob('./posts-old/*{.md,.mdx}', { eager: true }));
 ---
 
 <MainLayout title="Blog de Erick">
@@ -19,7 +22,11 @@ console.log({ blogPosts })
             </h1>
 
             <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
-
+                {
+                    posts.map((post) => (
+                        <BlogPost {...post} />
+                    ))
+                }
             </div>
         </div>
     </section>
