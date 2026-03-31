@@ -1,0 +1,14 @@
+---
+import { getCollection } from "astro:content";
+import MainLayout from "src/layouts/MainLayout.astro";
+
+const posts = await getCollection('blog')
+---
+
+<MainLayout>
+    {
+        posts.map(post => (
+            <p>{post}</p>
+        ))
+    }
+</MainLayout>
