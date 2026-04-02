@@ -13,5 +13,6 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  integrations: [mdx(), icon()]
+  integrations: [mdx(), icon()],
+  site: "https://example.com"
 });
